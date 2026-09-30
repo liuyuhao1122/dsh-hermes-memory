@@ -60,7 +60,7 @@ test('unchanged rejected content is retried once after a policy update', async (
 async function temporaryRoot(t) {
   const root = await mkdtemp(join(tmpdir(), 'dsh-hermes-test-'))
   t.after(async () => {
-    const allowed = resolve(tmpdir()) + '\\dsh-hermes-test-'
+    const allowed = join(resolve(tmpdir()), 'dsh-hermes-test-')
     assert.ok(resolve(root).startsWith(allowed))
     await rm(root, { recursive: true, force: true })
   })
@@ -316,7 +316,10 @@ test('one rejected tool registration leaves the others available and reports err
   t.after(() => disposers.forEach((dispose) => dispose()))
   apply(ctx, { memoryDir: root })
   await until(async () => {
-    try { return JSON.parse(await readFile(join(root, 'diagnostics.json'), 'utf8')).status === 'error' } catch { return false }
+    try {
+      const diagnostic = JSON.parse(await readFile(join(root, 'diagnostics.json'), 'utf8'))
+      return diagnostic.status === 'error' && diagnostic.detail.includes('failed to load')
+    } catch { return false }
   })
   assert.equal(registered.length, 4)
   const diagnostic = JSON.parse(await readFile(join(root, 'diagnostics.json'), 'utf8'))
