@@ -41,7 +41,7 @@
 
 该仓库提供 DSH bundle 插件格式，安装者无需手动编辑 profile 的 `cordis.patch.yml`，也不需要填写本机绝对路径。要求 DeepSeek Harness `0.2.0-rc.2`（或兼容的运行时依赖版本）及 Node.js 20+。
 
-在 DSH 插件市场搜索 **DSH Hermes Memory** 并点安装；市场收录和 npm 公共包发布完成后即可一键安装。也可从 DSH 插件管理器安装 GitHub 仓库 `https://github.com/liuyuhao1122/dsh-hermes-memory`。首次安装后启用插件并重启 DSH。
+在 DSH 插件市场搜索 **DSH Hermes Memory** 并点安装；市场收录和 npm 公共包发布完成后即可一键安装。也可从 DSH 插件管理器安装 npm 包 `@marculiu/dsh-hermes-memory`，或安装 GitHub 仓库 `https://github.com/liuyuhao1122/dsh-hermes-memory`。首次安装后启用插件并重启 DSH。
 
 开发/源码测试：克隆仓库后运行 `npm ci --ignore-scripts` 和 `npm test`。插件会跟随 DSH 当前主模型，使用该模型进行后台提炼与整理；这会消耗模型配额。记忆数据默认写入 `$DSH_HOME/memories-hermes`（未设置时为用户目录下 `.dsh/memories-hermes`），与源码分离。
 
