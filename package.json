@@ -1,19 +1,46 @@
 {
-  "name": "dsh-hermes-memory",
+  "name": "@liuyuhao1122/dsh-hermes-memory",
   "version": "0.1.0",
-  "description": "Lightweight layered long-term memory plugin for DeepSeek Harness",
+  "description": "Lightweight layered long-term memory bundle for DeepSeek Harness",
   "license": "MIT",
-  "private": true,
   "type": "module",
   "main": "./src/index.mjs",
-  "scripts": {
-    "test": "node --test",
-    "audit": "node scripts/audit.mjs"
+  "files": [
+    "src",
+    "cordis.patch.yml",
+    "README.md",
+    "LICENSE"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/liuyuhao1122/dsh-hermes-memory.git"
+  },
+  "publishConfig": {
+    "access": "public"
   },
   "engines": {
     "node": ">=20"
   },
-  "dependencies": {
+  "dsh": {
+    "bundle": {
+      "patch": "./cordis.patch.yml"
+    }
+  },
+  "scripts": {
+    "test": "node --test",
+    "audit": "node scripts/audit.mjs"
+  },
+  "peerDependencies": {
+    "@deepseek-ai/dsh-llm": "0.2.0-rc.2",
+    "@deepseek-ai/dsh-tools": "0.2.0-rc.2",
+    "@deepseek-ai/schemastery": "3.18.4"
+  },
+  "peerDependenciesMeta": {
+    "@deepseek-ai/dsh-llm": { "optional": true },
+    "@deepseek-ai/dsh-tools": { "optional": true },
+    "@deepseek-ai/schemastery": { "optional": true }
+  },
+  "devDependencies": {
     "@deepseek-ai/dsh-llm": "0.2.0-rc.2",
     "@deepseek-ai/dsh-tools": "0.2.0-rc.2",
     "@deepseek-ai/schemastery": "3.18.4"
