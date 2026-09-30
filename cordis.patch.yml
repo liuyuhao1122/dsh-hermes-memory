@@ -1,0 +1,5 @@
+# DSH bundle manifest. The bundle loader resolves the package entry and applies
+# the plugin without a machine-specific absolute path or profile edit.
+- insert:
+    - id: dsh-hermes-memory
+      name: '@liuyuhao1122/dsh-hermes-memory'
