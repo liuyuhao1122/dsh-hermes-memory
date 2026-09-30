@@ -2,4 +2,4 @@
 # No absolute path or per-machine config is needed.
 - insert:
     - id: dsh-hermes-memory
-      name: '@liuyuhao1122/dsh-hermes-memory'
+      name: '@marculiu/dsh-hermes-memory'

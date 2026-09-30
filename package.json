@@ -1,5 +1,5 @@
 {
-  "name": "@liuyuhao1122/dsh-hermes-memory",
+  "name": "@marculiu/dsh-hermes-memory",
   "version": "0.1.0",
   "description": "Lightweight layered long-term memory bundle for DeepSeek Harness",
   "license": "MIT",
