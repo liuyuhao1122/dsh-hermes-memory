@@ -39,11 +39,37 @@
 
 ## 安装
 
-该仓库提供 DSH bundle 插件格式，安装者无需手动编辑 profile 的 `cordis.patch.yml`，也不需要填写本机绝对路径。要求 DeepSeek Harness `0.2.0-rc.2`（或兼容的运行时依赖版本）及 Node.js 20+。
+要求 Node.js 20 或更新版本，以及提供 `@deepseek-ai/dsh-llm`、`@deepseek-ai/dsh-tools` `0.2.0-rc.2` API 的 DeepSeek Harness。当前兼容目标是 DSH `0.2.0-rc.2`；其它预览版本的兼容性尚未验证。
 
-在 DSH 插件市场搜索 **DSH Hermes Memory** 并点安装；市场收录和 npm 公共包发布完成后即可一键安装。也可从 DSH 插件管理器安装 npm 包 `@marculiu/dsh-hermes-memory`，或安装 GitHub 仓库 `https://github.com/liuyuhao1122/dsh-hermes-memory`。首次安装后启用插件并重启 DSH。
+### 从 GitHub 安装
 
-开发/源码测试：克隆仓库后运行 `npm ci --ignore-scripts` 和 `npm test`。插件会跟随 DSH 当前主模型，使用该模型进行后台提炼与整理；这会消耗模型配额。记忆数据默认写入 `$DSH_HOME/memories-hermes`（未设置时为用户目录下 `.dsh/memories-hermes`），与源码分离。
+```bash
+dsh plugin --profile web add github:liuyuhao1122/dsh-hermes-memory
+```
+
+安装后重启 `dsh web`。仓库通过 `package.json` 的 `dsh.bundle` 字段声明 bundle，`cordis.patch.yml` 会自动注册插件，无需复制配置或填写本机绝对路径。
+
+卸载：
+
+```bash
+dsh plugin --profile web remove @marculiu/dsh-hermes-memory
+```
+
+### 从源码安装与开发
+
+```bash
+git clone https://github.com/liuyuhao1122/dsh-hermes-memory.git
+cd dsh-hermes-memory
+dsh plugin --profile web add .
+```
+
+开发时可运行 `npm ci --ignore-scripts` 安装依赖。记忆数据默认写入 `$DSH_HOME/memories-hermes`（未设置时为用户目录下 `.dsh/memories-hermes`），与源码分离。
+
+### 数据与权限
+
+- 插件监听根会话中的用户和助手消息，用于本地记忆整理；不会保存工具输出。
+- 后台提炼和整理使用 DSH 当前配置的模型及其配额。若当前模型由远程服务提供，对话片段会发送给该服务；本插件不配置额外 API Key，也不启动数据库或独立服务。
+- 会话与提炼日志使用本地 `memory.key` 加密，但敏感值遮盖只覆盖常见格式。备份时要保留密钥；`forget` 会屏蔽常规搜索和来源展开，不等同于安全擦除。
 
 源码更新后重启 DeepSeek Harness，才能确保 Node 加载新版本。首次加载会将旧版明文 JSONL 转为加密日志，同时换算已有游标。启动状态与最近的后台错误记录在数据目录的 `diagnostics.json`；`state.json` 的 `distilledSeq` 和 `version` 分别表示已提炼的会话序号和长期整理次数。
 
