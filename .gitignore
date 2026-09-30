@@ -1,0 +1,30 @@
+node_modules/
+*.log
+.env
+.env.*
+!.env.example
+*.key
+*.pem
+*.p12
+*.pfx
+.DS_Store
+Thumbs.db
+
+# Machine-specific DSH profile configuration
+cordis.patch.yml
+cordis.patch.*.local.yml
+
+# Local memory data and backups
+**/memories-hermes/
+**/memory.key
+**/state.json
+**/diagnostics.json
+**/migration.json
+**/sessions/
+**/archive/
+**/history/
+**/rollups*.jsonl
+**/withdrawals.jsonl
+**/USER.md
+**/MEMORY.md
+**/PROCEDURES.md

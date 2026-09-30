@@ -1,0 +1,21 @@
+{
+  "name": "dsh-hermes-memory",
+  "version": "0.1.0",
+  "description": "Lightweight layered long-term memory plugin for DeepSeek Harness",
+  "license": "MIT",
+  "private": true,
+  "type": "module",
+  "main": "./src/index.mjs",
+  "scripts": {
+    "test": "node --test",
+    "audit": "node scripts/audit.mjs"
+  },
+  "engines": {
+    "node": ">=20"
+  },
+  "dependencies": {
+    "@deepseek-ai/dsh-llm": "0.2.0-rc.2",
+    "@deepseek-ai/dsh-tools": "0.2.0-rc.2",
+    "@deepseek-ai/schemastery": "3.18.4"
+  }
+}

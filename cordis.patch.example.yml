@@ -1,0 +1,13 @@
+- insert:
+    - id: dsh-hermes-memory
+      # Replace with the absolute path to this clone's src/index.mjs.
+      name: C:/path/to/dsh-hermes-memory/src/index.mjs
+      config:
+        memoryDir: ""
+        # Optional fallback. The plugin normally follows the current DSH model.
+        provider: ""
+        model: ""
+        consolidateEvery: 3
+        consolidateDelayMs: 90000
+        rawRetentionDays: 30
+        rollupRetentionDays: 365
